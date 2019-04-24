@@ -1,0 +1,28 @@
+body{
+	margin: 0;
+	padding:0;
+	font-family:sans-serif;
+	background-image:url("pic.jpg");
+	background-size: cover;
+}
+
+.container{
+	position:relative;
+	width:1100px;
+	height:300px;
+	margin:240px auto;
+	background: none;
+	top:-250px;
+	margin-left:300px;
+}
+.container .box{
+	position:relative;
+	width: 300px;
+	height: 200px;
+	background: #ff0;
+	float: left;
+	margin: 15px;
+	box-sizing
+	overflow:hidden;
+	border-radius: 10px;
+}

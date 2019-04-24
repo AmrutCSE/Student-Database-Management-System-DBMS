@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<a href="" onclick="ques1()">1)get the ssn,dateofbirth,dnumber of the student with name "monish"?</a><br>
+<element onclick="ques2()">2)Find the ssn of all the students who are  from department CSE ?</element></br>
+<element onclick="ques3()">3)find the names and ssn of the students who are applicable for CNR scholorship(marks > 90) ?</element></br>
+<element onclick="ques4()">4)find the names and ssn of the students who are eligible for exams(attendence >= 45) ?</element></br>
+<element onclick="ques5()">5)find the ssn of the students with dnumber=1 and section='H'?</element></br>
+<element onclick="ques6()">6)find all the names of the students whose got s grade in department 'CSE' ?</element></br>
+<element onclick="ques7()">7)find the all the id's of the courses offered by the mechanical department ?</element></br>
+<element onclick="ques8()">8)find the marks and grade scored by the student with srn='PES1201701112' in the course('UECS205') ?</element></br>
+<element onclick="ques9()">9)increase the marks of the students with the course_id 'UE17CS203' by 3 marks ?</element></br>
+<element onclick="ques10()">10)update the marks of the student by name 'monish' in all the courses offered by cse department to 100 ?</element></br>
+
+
+<?php
+	$host="localhost";
+    $dbUsername="root";
+    $dbPassword="";
+    $dbname="student";
+$con=mysqli_connect($host,$dbUsername,$dbPassword,$dbname);
+function ques1(){
+	mysqli_query($con,"select ssn,date_of_birth,dnumber from register where name='monish';");
+}
+function ques2(){
+	mysqli_query($con,"select ssn from register where dnumber=1;");
+}
+
+function ques3(){
+	mysqli_query($con,"select ssn,name from register where ssn in (select ssn from exams where marks > 90);");
+}
+function ques4(){
+	mysqli_query($con,"select ssn,name from register where ssn in (select ssn from attendence where attended >= 45);");
+}
+function ques5(){
+	mysqli_query($con,"select ssn,name from register where ssn in (select ssn from section where dnumber=1 and section='H');");
+}
+function ques6(){
+	mysqli_query($con,"select name from register where dnumber in (select dnumber from department where dname='CSE' INTERSECT select dnumber from exams where grades='S');");
+}
+function ques7(){
+	mysqli_query($con,"select course_id from course where dnumber in (select dnumber from department where dname='ME');");
+}
+function ques8(){
+	mysqli_query($con,"select marks,grades from exams where ssn='PES1201701112' and course_id='UE17CS205';");
+}
+function ques9(){
+	mysqli_query($con,"update exams set marks=marks+3 where course_id='UE17CS203';");
+}
+function ques10(){
+	mysqli_query($con,"update exams set marks=100,grades='S' where ssn in (select ssn from register where name='monish');");
+}
+
+
+</body>
+</html>
